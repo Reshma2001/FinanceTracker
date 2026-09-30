@@ -1,0 +1,30 @@
+.dashboardSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.greetingsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.gestureLbl {
+    font-size: 1.5em;
+}
+
+.greetingOverview {
+    font-size: 1.1em;
+}
+
+.chartLbl {
+    /*font-size: 1.1em;*/
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.barContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

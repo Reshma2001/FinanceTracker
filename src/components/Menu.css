@@ -1,0 +1,14 @@
+.menuSection {
+    width: 20%;
+    height: calc(100vh - 100px);
+}
+
+.menuitems {
+    padding: 15px;
+    cursor: pointer;
+}
+
+    .menuitems:hover {
+        background-color: rgba(0,0,0,0.1);
+        border-radius: 10px;
+    }

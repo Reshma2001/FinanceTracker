@@ -1,0 +1,23 @@
+
+
+.chartBar {
+    display: flex;
+    gap: 10px;
+}
+
+.amountBar {
+    font-weight: 600;
+}
+
+.expenseType {
+    min-width: 100px;
+}
+
+.barConent {
+    width: 100%;
+}
+
+.amountBar {
+    height: 20px;
+    background-color: antiquewhite;
+}

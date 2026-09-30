@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="financetracker.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>

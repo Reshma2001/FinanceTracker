@@ -1,0 +1,23 @@
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+main {
+    display: flex;
+}
+
+body {
+    background-color: #f8f8f8;
+}
+
+header, section {
+    background-color: #fff;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.sideSection {
+    width: calc(100vw - 20%);
+    padding: 20px;
+}
