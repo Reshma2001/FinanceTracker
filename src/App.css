@@ -21,3 +21,11 @@ header, section {
     width: calc(100vw - 20%);
     padding: 20px;
 }
+
+button {
+    padding: 0px 10px;
+    background-color: black;
+    color: white;
+    border: unset;
+    border-radius: 5px;
+}

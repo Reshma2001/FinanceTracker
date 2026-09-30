@@ -35,5 +35,23 @@ export default {
             expenseType: "Entertainment",
             amount: 345
         }
+    ],
+    recentTransaction: [
+        {
+            transactionType: "Food",
+            amount: 2344
+        },
+        {
+            transactionType: "Income",
+            amount: 23344
+        },
+        {
+            transactionType: "Food",
+            amount: 1245
+        },
+        {
+            transactionType: "Shopping",
+            amount: 5344
+        },
     ]
 }

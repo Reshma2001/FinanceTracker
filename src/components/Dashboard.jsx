@@ -2,7 +2,7 @@ import "./Dashboard.css"
 import financeData from "../../data/financeData";
 import SummaryCard from "./SummaryCard";
 import SpendingChart from "./SpendingChart";
-
+import RecentTransaction from "./RecentTransaction";
 
 export default function Dashboard() {
     const dateNow = new Date();
@@ -16,8 +16,9 @@ export default function Dashboard() {
     else
         greetingsLbl = "Evening"
 
-    var summaryCardElem = financeData.summaryData.map(item => <SummaryCard key={item.type} summaryData={item} />)
-    var chartSummary = financeData.chartReport.map(item => <SpendingChart key={item.expenseType} totalExpense={financeData.expenseAmount} chartReport={item} />)
+    const summaryCardElem = financeData.summaryData.map(item => <SummaryCard key={item.type} summaryData={item} />)
+    const chartSummary = financeData.chartReport.map(item => <SpendingChart key={item.expenseType} totalExpense={financeData.expenseAmount} chartReport={item} />)
+    const recentTracs = financeData.recentTransaction.map(item => <RecentTransaction key={item.amount} transaction={item} />);
 
     return (
         <section className="dashboardSection sideSection">
@@ -32,6 +33,15 @@ export default function Dashboard() {
                 <div className="chartLbl">Spending Overview</div>
                 <div className="barContainer">
                     {chartSummary}
+                </div>
+            </div>
+            <div className="transactionContainer">
+                <div className="transactionHeader">
+                    <div className="transactionLbl">Recent Transaction</div>
+                    <button className="btnForAddTransaction">+ Add</button>
+                </div>
+                <div className="transactionList">
+                    {recentTracs}
                 </div>
             </div>
         </section>
