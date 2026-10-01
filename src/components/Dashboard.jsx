@@ -1,10 +1,14 @@
+import { useState } from "react";
 import "./Dashboard.css"
 import financeData from "../../data/financeData";
 import SummaryCard from "./SummaryCard";
 import SpendingChart from "./SpendingChart";
 import RecentTransaction from "./RecentTransaction";
+import AddTransaction from "./AddTransaction";
+import ModalView from "./ModalView";
 
 export default function Dashboard() {
+    const [isModalOpen, setupIsModalOpen] = useState(false);
     const dateNow = new Date();
     const getHours = dateNow.getHours();
     let greetingsLbl;
@@ -20,30 +24,40 @@ export default function Dashboard() {
     const chartSummary = financeData.chartReport.map(item => <SpendingChart key={item.expenseType} totalExpense={financeData.expenseAmount} chartReport={item} />)
     const recentTracs = financeData.recentTransaction.map(item => <RecentTransaction key={item.amount} transaction={item} />);
 
+    function handleAddBtn() {
+        setupIsModalOpen(true);
+    }
+
     return (
-        <section className="dashboardSection sideSection">
-            <div className="greetingsContainer">
-                <div className="gestureLbl">Good {greetingsLbl} 👋</div>
-                <div className="greetingOverview">Here's your financial overview</div>
-            </div>
-            <div className="summaryContainer">
-                {summaryCardElem}
-            </div>
-            <div className="chartContainer">
-                <div className="chartLbl">Spending Overview</div>
-                <div className="barContainer">
-                    {chartSummary}
+        <>
+            <section className="dashboardSection sideSection">
+                <div className="greetingsContainer">
+                    <div className="gestureLbl">Good {greetingsLbl} 👋</div>
+                    <div className="greetingOverview">Here's your financial overview</div>
                 </div>
-            </div>
-            <div className="transactionContainer">
-                <div className="transactionHeader">
-                    <div className="transactionLbl">Recent Transaction</div>
-                    <button className="btnForAddTransaction">+ Add</button>
+                <div className="summaryContainer">
+                    {summaryCardElem}
                 </div>
-                <div className="transactionList">
-                    {recentTracs}
+                <div className="chartContainer">
+                    <div className="chartLbl">Spending Overview</div>
+                    <div className="barContainer">
+                        {chartSummary}
+                    </div>
                 </div>
-            </div>
-        </section>
+                <div className="transactionContainer">
+                    <div className="transactionHeader">
+                        <div className="transactionLbl">Recent Transaction</div>
+                        <button className="btnForAddTransaction" onClick={handleAddBtn} >+ Add</button>
+                    </div>
+                    <div className="transactionList">
+                        {recentTracs}
+                    </div>
+                </div>
+            </section>
+            {isModalOpen ?
+                <ModalView isOpen={isModalOpen} >
+                    <AddTransaction setupIsModalOpen={setupIsModalOpen } />
+                </ModalView>:""}
+        </>
     )
 }

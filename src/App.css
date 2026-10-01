@@ -28,4 +28,11 @@ button {
     color: white;
     border: unset;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.ModalDialogView {
+    border: unset;
+    height: calc(100% - 100px);
+    width: 500px;
 }
