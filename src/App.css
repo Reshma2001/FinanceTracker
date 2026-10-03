@@ -23,6 +23,7 @@ header, section {
 }
 
 button {
+    height: 30px;
     padding: 0px 10px;
     background-color: black;
     color: white;
@@ -35,4 +36,23 @@ button {
     border: unset;
     height: calc(100% - 100px);
     width: 500px;
+    outline: unset;
+    padding: unset;
 }
+
+    .ModalDialogView header,
+    .ModalDialogView section {
+        margin: unset;
+        padding: unset;
+        padding-inline: 15px;
+    }
+
+    .ModalDialogView header {
+        height: 50px;
+        border-radius: unset;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .ModalDialogView section {
+        padding-top: 20px;
+    }

@@ -9,6 +9,11 @@ import ModalView from "./ModalView";
 
 export default function Dashboard() {
     const [isModalOpen, setupIsModalOpen] = useState(false);
+    const [recentTracsactions, setRecentTransactions] = useState(financeData.recentTransaction);
+    const [balanceAmount, setBalanceAmount] = useState(financeData.balanceAmount);
+    const [expenseAmount, setExpenseAmount] = useState(financeData.expenseAmount);
+    const [incomeAmount, setIncomeAmount] = useState(financeData.incomeAmount);
+
     const dateNow = new Date();
     const getHours = dateNow.getHours();
     let greetingsLbl;
@@ -19,10 +24,9 @@ export default function Dashboard() {
         greetingsLbl = "AfterNoon"
     else
         greetingsLbl = "Evening"
-
-    const summaryCardElem = financeData.summaryData.map(item => <SummaryCard key={item.type} summaryData={item} />)
+    
     const chartSummary = financeData.chartReport.map(item => <SpendingChart key={item.expenseType} totalExpense={financeData.expenseAmount} chartReport={item} />)
-    const recentTracs = financeData.recentTransaction.map(item => <RecentTransaction key={item.amount} transaction={item} />);
+    const recentTracs = recentTracsactions.map(item => <RecentTransaction key={item.amount} transaction={item} />);
 
     function handleAddBtn() {
         setupIsModalOpen(true);
@@ -36,7 +40,9 @@ export default function Dashboard() {
                     <div className="greetingOverview">Here's your financial overview</div>
                 </div>
                 <div className="summaryContainer">
-                    {summaryCardElem}
+                    <SummaryCard summaryTitle={"Balance" } summaryAmount={ balanceAmount} />
+                    <SummaryCard summaryTitle={"Income" } summaryAmount={incomeAmount } />
+                    <SummaryCard summaryTitle={"Expense" } summaryAmount={expenseAmount } />
                 </div>
                 <div className="chartContainer">
                     <div className="chartLbl">Spending Overview</div>
@@ -56,7 +62,12 @@ export default function Dashboard() {
             </section>
             {isModalOpen ?
                 <ModalView isOpen={isModalOpen} >
-                    <AddTransaction setupIsModalOpen={setupIsModalOpen } />
+                    <AddTransaction
+                        setupIsModalOpen={setupIsModalOpen}
+                        setIncomeAmount={setIncomeAmount}
+                        setBalanceAmount={setBalanceAmount}
+                        setExpenseAmount={setExpenseAmount}
+                        setRecentTransactions={setRecentTransactions} />
                 </ModalView>:""}
         </>
     )
