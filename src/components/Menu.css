@@ -1,6 +1,16 @@
 .menuSection {
     width: 20%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 20px);
+}
+
+.menuSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.apptitle, .currentUser {
+    padding: 15px;
 }
 
 .menuitems {

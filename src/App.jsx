@@ -33,7 +33,7 @@ function App() {
 
     return (
         <>
-            <Header />
+          {/*   <Header /> */}
             <main>
                 <Menu onSectionChange={setSectionName} />
                 <Dashboard />
