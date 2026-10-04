@@ -1,14 +1,15 @@
 import "./AddTransaction.css"
 
 export default function AddTransaction(props) {
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+    console.log(todayStr);
     function handleModalClose() {
         props.setupIsModalOpen(false);
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        const formEle = event.currentTarget;        
-        const formData = new FormData(formEle);
+    function addTransaction(formData) {
         const title = formData.get("title");
         const amount = parseInt(formData.get("amount"));
 
@@ -21,7 +22,7 @@ export default function AddTransaction(props) {
             props.setBalanceAmount(preExpense => preExpense - amount);
         }
 
-        props.setRecentTransactions(preTransation => [...preTransation, { transactionType: title, amount: amount }]);     
+        props.setRecentTransactions(preTransation => [{ transactionType: title, amount: amount }, ...preTransation]);
     }
 
     function handleCancel() {
@@ -35,21 +36,39 @@ export default function AddTransaction(props) {
                 <div className="closeModal" onClick={ handleModalClose} >X</div>
             </header>
             <section>
-                <form className="transationForm" onSubmit={handleSubmit}>
+                <form className="transationForm" action={addTransaction}>
                     <div className="inputContainer">
-                        <label>Title</label>
-                        <input type="text" name="title" placeholder="Eg.Food"></input>
+                        <label htmlFor="transactionTitle">Title</label>
+                        <input id="transactionTitle" type="text" name="title" placeholder="Eg.Food"></input>
                     </div>
-                    <div className="inputContainer" style={{display: "none"} } >
-                        <label>Type</label>
-                        <select value="Expense">
-                            <option value="Expense">Expense</option>
-                            <option value="Expense">Income</option>
+                    <div className="inputContainer">
+                        <label htmlFor="category">Category</label>
+                        <select id="category" value="">
+                            <option value="">Choose Category</option>
+                            <option value="Food">Food</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Health">Health</option>
+                            <option value="Income">Salary</option>
+                            <option value="PartTime">Part Time Job</option>
                         </select>
                     </div>
                     <div className="inputContainer">
-                        <label>Amount</label>
-                        <input type="number" name="amount" placeholder="Eg.342"></input>
+                        <label htmlFor="type">Type</label>
+                        <div className="radioGroup">
+                            <label><input type="radio" name="type" value="Expense" /> Expense</label>
+                            <label><input type="radio" name="type" value="Income" defaultChecked={true} /> Income</label>                        
+                        </div>
+                    </div>
+                    <div className="inputContainer">
+                        <label htmlFor="date">Type</label>
+                        <input id="date" type="date" name="date" defaultValue={todayStr} ></input>
+                    </div>
+                    <div className="inputContainer">
+                        <label htmlFor="amount">Amount</label>
+                        <input id="amount" type="number" name="amount" placeholder="Eg.342"></input>
                     </div>
                     <div className="footerOptions">
                         <button type="button" onClick={handleCancel} >Cancel</button>

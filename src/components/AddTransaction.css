@@ -23,6 +23,17 @@
             border-bottom: 1px solid rgba(0,0,0,0.2);
         }
 
+.radioGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .radioGroup input {
+        position: relative;
+        top: 2px;
+    }
+
 .footerOptions {
     display: flex;
     gap: 20px;

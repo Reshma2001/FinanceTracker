@@ -48,6 +48,9 @@ button {
     }
 
     .ModalDialogView header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         height: 50px;
         border-radius: unset;
         border-bottom: 1px solid rgba(0,0,0,0.1);

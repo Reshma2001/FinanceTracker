@@ -1,5 +1,12 @@
 export default function Budgets() {
     return (
-        <div>Budgets</div>
+        <>
+            <section className="budgetSection sideSection">
+                <div className="greetingsContainer">
+                    <div className="gestureLbl">Budgets 💰</div>
+                    <div className="greetingOverview">Manage your monthly spending limits</div>
+                </div>
+            </section>
+        </>
     )
 }

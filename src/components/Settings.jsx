@@ -1,5 +1,12 @@
 export default function Settings() {
     return (
-        <div>Settings</div>
+        <>
+            <section className="settingsSection sideSection">
+                <div className="greetingsContainer">
+                    <div className="gestureLbl">Settings ⚙️</div>
+                    <div className="greetingOverview">Manage your account and application preferences</div>
+                </div>
+            </section>
+        </>
     )
 }
