@@ -1,0 +1,40 @@
+.categoryForm {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .inputContainer input,
+    .inputContainer select {
+        outline: unset;
+        border: unset;
+        padding: 10px;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+        .inputContainer input:focus {
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+
+.radioGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .radioGroup input {
+        position: relative;
+        top: 2px;
+    }
+
+.footerOptions {
+    display: flex;
+    gap: 20px;
+}

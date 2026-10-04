@@ -60,7 +60,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </section>
-            {isModalOpen ?
+            {isModalOpen &&
                 <ModalView isOpen={isModalOpen} >
                     <AddTransaction
                         setupIsModalOpen={setupIsModalOpen}
@@ -68,7 +68,7 @@ export default function Dashboard() {
                         setBalanceAmount={setBalanceAmount}
                         setExpenseAmount={setExpenseAmount}
                         setRecentTransactions={setRecentTransactions} />
-                </ModalView>:""}
+                </ModalView>}
         </>
     )
 }

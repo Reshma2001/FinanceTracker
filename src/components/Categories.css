@@ -1,0 +1,47 @@
+.categoryGreetings {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.catergoryCard {
+    width: fit-content;
+    min-width: 100px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.categoryGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.catergoryheader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.caategoryHeading {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.catergoryTitle {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.categoryInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
