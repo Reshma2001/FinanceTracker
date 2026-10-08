@@ -7,26 +7,26 @@ import AddCategory from "./AddCategory";
 export default function Categories() {
     const [isModalOpen, setupIsModalOpen] = useState(false);
     const [categoryItem, setCategoryItem] = useState(categoryData);
-    console.log(categoryItem);
+    
     const incomeCategoryElem = categoryItem.incomeCategory.map(item => (
-        <div className="catergoryCard" key={item.amount}>
-            <div className="catergoryTitle">{item.category}</div>
-            <div className="categoryInfo">
-                <div className="totalExpense">{item.totalExpense ? item.totalExpense :0} expenses</div>
-                <div className="totalAmount">₹{item.amount ? item.amount :0}</div>
-            </div>
-        </div>
+        categoryTemplate(item)
     ));
 
     const expenseCategoryElem = categoryItem.expenseCatergory.map(item => (
-        <div className="catergoryCard" key={item.amount}>
-            <div className="catergoryTitle">{item.category}</div>
-            <div className="categoryInfo">
-                <div className="totalExpense">{item.totalExpense ? item.totalExpense :0} expenses</div>
-                <div className="totalAmount">₹{item.amount ? item.amount :0}</div>
-            </div>
-        </div>
+        categoryTemplate(item)
     ));
+
+    function categoryTemplate(item) {
+        return (
+            <div className="catergoryCard" key={item.id}>
+                <div className="catergoryTitle">{item.category}</div>
+                <div className="categoryInfo">
+                    <div className="totalExpense">{item.totalExpense ? item.totalExpense : 0} expenses</div>
+                    <div className="totalAmount">₹{item.amount ? item.amount : 0}</div>
+                </div>
+            </div>
+        )
+    }
 
     function handleAddCategory() {
         setupIsModalOpen(prev => !prev);

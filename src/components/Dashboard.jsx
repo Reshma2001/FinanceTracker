@@ -25,8 +25,8 @@ export default function Dashboard() {
     else
         greetingsLbl = "Evening"
     
-    const chartSummary = financeData.chartReport.map(item => <SpendingChart key={item.expenseType} totalExpense={financeData.expenseAmount} chartReport={item} />)
-    const recentTracs = recentTracsactions.map(item => <RecentTransaction key={item.amount} transaction={item} />);
+    const chartSummary = financeData.chartReport.map(item => <SpendingChart key={item.id} totalExpense={financeData.expenseAmount} chartReport={item} />)
+    const recentTracs = recentTracsactions.map(item => <RecentTransaction key={item.id} transaction={item} />);
 
     function handleAddBtn() {
         setupIsModalOpen(true);

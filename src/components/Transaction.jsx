@@ -3,7 +3,7 @@ import "./Transaction.css";
 
 export default function Transaction() {
     const transactions = transactionData.map(item => (
-        <tr key={ item.amount}>
+        <tr key={ item.id}>
             <td>{item.date}</td>
             <td>{item.title}</td>
             <td>{item.category}</td>
