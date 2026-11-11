@@ -1,36 +1,21 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
-import Menu from './components/Menu'
-import Dashboard from './components/Dashboard'
-import Transaction from './components/Transaction'
-import Budgets from './components/Budgets'
-import Categories from './components/Categories'
-import Settings from './components/Settings'
 
-function App() {
-    const [sectionName, setSectionName] = useState("Dashboard");
+import Login from './components/Login';
+import MainLayout from "./components/MainLayput";
 
-    let ActiveSection = () => {
-        switch (sectionName) {
-            case "Dashboard":
-                return <Dashboard />;
-            case "Transaction":
-                return <Transaction />;
-            case "Budgets":
-                return <Budgets />;
-            case "Categories":
-                return <Categories />;
-            default:
-                return <Settings />
-        };
-    }    
 
+function App() {      
     return (
         <>
-            <main>
-                <Menu setSectionName={setSectionName} />
-                {ActiveSection()}
-            </main>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                </Routes>
+                <Routes>
+                    <Route path="/dashboard" element={<MainLayout />} />
+                </Routes>
+            </BrowserRouter>
         </>
     )
 }

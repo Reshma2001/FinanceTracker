@@ -1,0 +1,32 @@
+.loginContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    margin: auto;
+}
+.loginContent {
+    width: 450px;
+    height: max-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background: antiquewhite;
+    border-radius: 10px;
+    padding: 20px;
+}
+.loginLbl{
+    font-size: 1.5em;
+    text-align: center;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.nameContainer,
+.pwdContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

@@ -1,10 +1,12 @@
+import { useState } from "react";
 import "./AddTransaction.css"
 
 export default function AddTransaction(props) {
+    const [category, setCategory] = useState("");
     const today = new Date();
     const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
-    console.log(todayStr);
+    
     function handleModalClose() {
         props.setupIsModalOpen(false);
     }
@@ -12,6 +14,10 @@ export default function AddTransaction(props) {
     function addTransaction(formData) {
         const title = formData.get("title");
         const amount = parseInt(formData.get("amount"));
+
+        if (title == "" || amount == "" || category == "") {
+            return;
+        }
 
         if (title.toLowerCase() == "income") {
             props.setIncomeAmount(prevIncome => prevIncome + amount);
@@ -22,7 +28,19 @@ export default function AddTransaction(props) {
             props.setBalanceAmount(preExpense => preExpense - amount);
         }
 
-        props.setRecentTransactions(preTransation => [{ transactionType: title, amount: amount }, ...preTransation]);
+        props.setRecentTransactions(preTransation => [
+            {
+                transactionType: title,
+                amount: amount,
+                category: category
+            }
+            , ...preTransation]
+        );
+    }
+
+    function handleCategory(event) {
+        const value = event.target.value;
+        setCategory(value);
     }
 
     function handleCancel() {
@@ -43,8 +61,8 @@ export default function AddTransaction(props) {
                     </div>
                     <div className="inputContainer">
                         <label htmlFor="category">Category</label>
-                        <select id="category" value="">
-                            <option value="">Choose Category</option>
+                        <select id="category" name="category" value={category} onChange={handleCategory}>
+                            <option value="">-- Choose Category --</option>
                             <option value="Food">Food</option>
                             <option value="Shopping">Shopping</option>
                             <option value="Bills">Bills</option>
