@@ -37,8 +37,6 @@ src
 ├── layouts           # Layout components
 ├── pages             # Page components
 ├── services          # API services and mock data
-├── styles            # Global styles
-└── utils             # Utility functions
 ```
 
 ## Getting Started

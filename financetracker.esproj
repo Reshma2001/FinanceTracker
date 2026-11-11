@@ -8,7 +8,4 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
     <StartupCommandWorkingDirectory>D:\office\ReactLearning\FinanceTracker</StartupCommandWorkingDirectory>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="src\pages\" />
-  </ItemGroup>
 </Project>

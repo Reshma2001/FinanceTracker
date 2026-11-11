@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import Menu from './Menu'
-import Dashboard from './Dashboard'
-import Transaction from './Transaction'
-import Budgets from './Budgets'
-import Categories from './Categories'
-import Settings from './Settings'
+import Menu from '../shared/Menu'
+import Dashboard from '../components/Dashboard'
+import Transaction from '../components/Transaction'
+import Budgets from '../components/Budgets'
+import Categories from '../components/Categories'
+import Settings from '../components/Settings'
 
 function MainLayout() {
     const [sectionName, setSectionName] = useState("Dashboard");

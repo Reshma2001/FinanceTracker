@@ -1,7 +1,7 @@
 import categoryData from "../../data/categoryData";
 import { useState } from "react";
 import "./Categories.css";
-import ModalView from "./ModalView";
+import ModalView from "../shared/ModalView";
 import AddCategory from "./AddCategory";
 
 export default function Categories() {

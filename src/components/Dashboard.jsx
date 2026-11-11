@@ -5,7 +5,7 @@ import SummaryCard from "./SummaryCard";
 import SpendingChart from "./SpendingChart";
 import RecentTransaction from "./RecentTransaction";
 import AddTransaction from "./AddTransaction";
-import ModalView from "./ModalView";
+import ModalView from "../shared/ModalView";    
 
 export default function Dashboard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
