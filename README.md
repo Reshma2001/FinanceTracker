@@ -1,16 +1,92 @@
-# React + Vite
+# FinanceTracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Available Scripts
 
-Currently, two official plugins are available:
+Start the development server:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+FinanceTracker is a React application for tracking income, expenses, balances, spending categories, and recent transactions.
 
-## React Compiler
+The project was created with React and Vite. It currently uses local dummy data to demonstrate the application's user interface and functionality.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Dashboard overview
+- Balance, income, and expense summary cards
+- Spending overview chart
+- Recent transactions list
+- Add transaction form
+- Transaction categories
+- Income and expense management
+- Navigation between dashboard sections
+- Responsive component-based layout
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies
+
+- React
+- Vite
+- JavaScript
+- CSS
+- ESLint
+
+## Project Structure
+
+```bash
+src
+├── assets            # Assets like images and fonts
+├── components        # Reusable components
+├── layouts           # Layout components
+├── pages             # Page components
+├── services          # API services and mock data
+├── styles            # Global styles
+└── utils             # Utility functions
+```
+
+## Getting Started
+
+### Prerequisites
+
+Install the following software before running the project:
+
+- Node.js
+- npm
+
+### Installation
+
+Clone the repository: `git clone <repo-url>`
+Navigate to the project directory:
+
+Install the dependencies:
+
+## Dummy Data
+
+The application currently uses local dummy data files:
+
+- `data/financeData.js`
+- `data/transactionData.js`
+
+The data is used to populate the dashboard and transaction views. Transactions are not currently stored in a database or backend service.
+
+## Current Limitations
+
+- Data is not persisted after the application is closed.
+- The transaction page currently uses separate dummy data.
+- Search functionality is not implemented yet.
+- Budget and category management are currently placeholders.
+- Authentication is not implemented.
+- Backend integration is not implemented.
+
+## Future Improvements
+
+- Add local storage or database persistence.
+- Use one shared transaction state across the application.
+- Add transaction editing and deletion.
+- Implement transaction search and filtering.
+- Add charts for income and expense trends.
+- Add budget management.
+- Add authentication.
+- Connect the application to a backend API.
+- Add unit and component tests.
+
+## License
+
+This project is intended for learning and demonstration purposes.

@@ -1,41 +1,41 @@
 import { useState } from "react";
 import "./AddTransaction.css"
 
-export default function AddTransaction(props) {
-    const [category, setCategory] = useState("");
+export default function AddTransaction({ setIsModalOpen,setIncomeAmount,setBalanceAmount,setExpenseAmount,setRecentTransactions }) {
+    const [categoryItem, setCategory] = useState("");
     const today = new Date();
     const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
     
     function handleModalClose() {
-        props.setupIsModalOpen(false);
+        setIsModalOpen(false);
     }
 
     function addTransaction(formData) {
         const title = formData.get("title");
-        const amount = parseInt(formData.get("amount"));
+        const amountValue = parseInt(formData.get("amount"));
 
-        if (title == "" || amount == "" || category == "") {
+        if (title == "" || amountValue == "" || categoryItem == "") {
             return;
         }
 
         if (title.toLowerCase() == "income") {
-            props.setIncomeAmount(prevIncome => prevIncome + amount);
-            props.setBalanceAmount(prevIncome => prevIncome + amount);
+            setIncomeAmount(prevIncome => prevIncome + amountValue);
+            setBalanceAmount(prevIncome => prevIncome + amountValue);
         }
         else {
-            props.setExpenseAmount(preExpense => preExpense + amount);
-            props.setBalanceAmount(preExpense => preExpense - amount);
+            setExpenseAmount(preExpense => preExpense + amountValue);
+            setBalanceAmount(preExpense => preExpense - amountValue);
         }
 
-        props.setRecentTransactions(preTransation => [
+        setRecentTransactions((previousTransactions) => [
             {
                 transactionType: title,
-                amount: amount,
-                category: category
-            }
-            , ...preTransation]
-        );
+                amount: amountValue,
+                category: categoryItem
+            },
+            ...previousTransactions
+]);
     }
 
     function handleCategory(event) {
@@ -54,14 +54,14 @@ export default function AddTransaction(props) {
                 <div className="closeModal" onClick={ handleModalClose} >X</div>
             </header>
             <section>
-                <form className="transationForm" action={addTransaction}>
+                <form className="transactionForm" action={addTransaction}>
                     <div className="inputContainer">
                         <label htmlFor="transactionTitle">Title</label>
                         <input id="transactionTitle" type="text" name="title" placeholder="Eg.Food"></input>
                     </div>
                     <div className="inputContainer">
                         <label htmlFor="category">Category</label>
-                        <select id="category" name="category" value={category} onChange={handleCategory}>
+                        <select id="category" name="category" value={categoryItem} onChange={handleCategory}>
                             <option value="">-- Choose Category --</option>
                             <option value="Food">Food</option>
                             <option value="Shopping">Shopping</option>

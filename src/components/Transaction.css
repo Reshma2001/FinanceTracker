@@ -13,7 +13,7 @@
     padding-inline-start: 10px;
 }
 
-.transationTable {
+.transactionTable {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -21,23 +21,23 @@
     height: 100%;
 }
 
-    .transationTable tr {
+    .transactionTable tr {
         width: 100%;
         display: flex;
         justify-content: space-between;
     }
 
-    .transationTable tbody {
+    .transactionTable tbody {
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
 
-    .transationTable th {
+    .transactionTable th {
         text-align: start;
         font-size: 1.2em;
     }
 
-    .transationTable th, .transationTable td {
+    .transactionTable th, .transactionTable td {
         width: calc(100% / 5);
     }

@@ -19,9 +19,13 @@ export default function Transaction() {
                     <div className="gestureLbl">Transactions 💳</div>
                     <div className="greetingOverview">Track and manage all your income and expenses</div>
                 </div>
-                <input className="searchInput" type="text" placeholder="Search transcations"/>
+                <input
+                    className="searchInput"
+                    type="text"
+                    placeholder="Search transactions"
+                />
                 <div className="transactionGrid">
-                    <table className="transationTable">
+                    <table className="transactionTable">
                         <thead>
                             <tr>
                                 <th>Date</th>

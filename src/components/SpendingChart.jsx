@@ -6,7 +6,7 @@ export default function SpendingChart({ totalExpense, chartReport }) {
         <>
             <div className="chartBar">
                 <div className="expenseType">{chartReport.expenseType}</div>
-                <div className="barConent">
+                <div className="barContent">
                     <div className="amountBar" style={{ width: expensePer + "%" }}></div>
                     <div className="expenseAmount">₹{chartReport.amount}</div>
                </div>                
