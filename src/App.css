@@ -19,8 +19,28 @@ header, section {
 
 .sideSection {
     width: calc(100vw - 20%);
+    max-height: 92.5vh;
+    overflow-y: auto;
     padding: 20px;
 }
+
+    .sideSection::-webkit-scrollbar {
+        width: 5px;recentTransactions
+previousTransactions
+transactionForm
+barContent
+afternoon
+    }
+
+    .sideSection::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: transparent;        
+    }
+
+    .sideSection::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: grey;
+    }
 
 button {
     height: 30px;
