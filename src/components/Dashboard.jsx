@@ -6,8 +6,10 @@ import SpendingChart from "./SpendingChart";
 import RecentTransaction from "./RecentTransaction";
 import AddTransaction from "./AddTransaction";
 import ModalView from "../shared/ModalView";    
+import { useAuth } from "../context/useAuth";
 
 export default function Dashboard() {
+    const {user} = useAuth();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [recentTransactions, setRecentTransactions] = useState(financeData.recentTransaction);
     const [balanceAmount, setBalanceAmount] = useState(financeData.balanceAmount);
@@ -50,7 +52,7 @@ export default function Dashboard() {
             <section className="dashboardSection sideSection">
                 <div className="greetingsContainer">
                     <div className="gestureLbl">
-                        Good {greetingLabel} 👋
+                        Good {greetingLabel} <span className="userName">{ user?.userName}</span>👋
                     </div>
 
                     <div className="greetingOverview">

@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Login.css"
 import userData from "../../data/userData";
+import { useAuth } from "../context/useAuth.jsx";
 
 export default function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -15,6 +17,12 @@ export default function Login() {
                 item.userName === username &&
                 item.password === password
         );
+
+        if (user) {
+            login({
+                userName: user.userName,
+            })
+        }
 
         const isValidUser = !!user;
 
