@@ -61,6 +61,8 @@ The application currently uses local dummy data files:
 
 - `data/financeData.js`
 - `data/transactionData.js`
+- `data/categoryData.js`
+- `data/userData.js`
 
 The data is used to populate the dashboard and transaction views. Transactions are not currently stored in a database or backend service.
 

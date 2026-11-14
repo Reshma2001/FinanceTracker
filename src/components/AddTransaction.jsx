@@ -3,6 +3,7 @@ import "./AddTransaction.css"
 
 export default function AddTransaction({ setIsModalOpen,setIncomeAmount,setBalanceAmount,setExpenseAmount,setRecentTransactions }) {
     const [categoryItem, setCategory] = useState("");
+    const [transactionType, setTransactionType] = useState("Income");
     const today = new Date();
     const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
@@ -12,13 +13,13 @@ export default function AddTransaction({ setIsModalOpen,setIncomeAmount,setBalan
     }
 
     function addTransaction(formData) {
-        const title = formData.get("title");
+        const title = formData.get("title");        
         const amountValue = parseInt(formData.get("amount"));
 
         if (title == "" || amountValue == "" || categoryItem == "") {
             return;
         }
-
+        
         if (title.toLowerCase() == "income") {
             setIncomeAmount(prevIncome => prevIncome + amountValue);
             setBalanceAmount(prevIncome => prevIncome + amountValue);
@@ -30,12 +31,17 @@ export default function AddTransaction({ setIsModalOpen,setIncomeAmount,setBalan
 
         setRecentTransactions((previousTransactions) => [
             {
-                transactionType: title,
+                transactionType: transactionType,
                 amount: amountValue,
                 category: categoryItem
             },
             ...previousTransactions
-]);
+        ]);
+    }
+
+    function handleTypeChange(event) {
+        const value = event.target.value;
+        setTransactionType(value);
     }
 
     function handleCategory(event) {
@@ -76,8 +82,8 @@ export default function AddTransaction({ setIsModalOpen,setIncomeAmount,setBalan
                     <div className="inputContainer">
                         <label htmlFor="type">Type</label>
                         <div className="radioGroup">
-                            <label><input type="radio" name="type" value="Expense" /> Expense</label>
-                            <label><input type="radio" name="type" value="Income" defaultChecked={true} /> Income</label>                        
+                            <label><input type="radio" name="type" value="Expense" checked={transactionType == "Expense"} onChange={handleTypeChange} /> Expense</label>
+                            <label><input type="radio" name="type" value="Income" checked={transactionType == "Income"} onChange={ handleTypeChange} /> Income</label>                        
                         </div>
                     </div>
                     <div className="inputContainer">

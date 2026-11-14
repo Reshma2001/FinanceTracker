@@ -25,11 +25,7 @@ header, section {
 }
 
     .sideSection::-webkit-scrollbar {
-        width: 5px;recentTransactions
-previousTransactions
-transactionForm
-barContent
-afternoon
+        width: 5px;
     }
 
     .sideSection::-webkit-scrollbar-track {

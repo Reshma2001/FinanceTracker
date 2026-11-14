@@ -13,7 +13,7 @@ export default function Settings() {
                         <div className="sectionTitle">Profile</div>
                         <div className="userInfoContent">
                             <div className="sectionOptionContent userName">Reshma</div>
-                            <div className="sectionOptionContent">reshma@gmail.com</div>
+                            <div className="sectionOptionContent" style={{display: "none"}} >reshma@gmail.com</div>
                         </div>
                     </div>
                     <div className="sectionBlock">
