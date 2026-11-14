@@ -1,6 +1,11 @@
+import { useState } from "react";
 import "./Settings.css"
 
 export default function Settings() {
+    const [theme, setTheme] = useState("Light");
+    const [currency, setCurrency] = useState("INR");
+    const [notification, setNotification] = useState("On");
+
     return (
         <>
             <section className="settingsSection sideSection">
@@ -21,21 +26,21 @@ export default function Settings() {
                         <div className="sectionOptionContainer">
                             <div className="sectionOptionContent">
                                 <div className="preferenceOption">Appearance</div>
-                                <select value="Light" >
+                                <select value={theme} onChange={(e) => setTheme(e.target.value)}>
                                     <option value="Light" name="appearance">Light</option>
                                     <option value="Dark" name="appearance">Dark</option>
                                 </select>
                             </div>
                             <div className="sectionOptionContent">
                                 <div className="preferenceOption">Currency</div>
-                                <select value="INR" >
+                                <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
                                     <option value="INR" name="currency">INR</option>
                                     <option value="Dollar" name="currency">Dollar</option>
                                 </select>
                             </div>
-                            <div className="sectionOptionContent">
-                                <div className="preferenceOption">Notifiacation</div>
-                                <select value="On" >
+                            <div className="sectionOptionContent" style={{display: "none"}}>
+                                <div className="preferenceOption">Notification</div>
+                                <select value={notification} onChange={(e) => setNotification(e.target.value)}>
                                     <option value="On" name="notification">On</option>
                                     <option value="Off" name="notification">Off</option>
                                 </select>
@@ -48,10 +53,10 @@ export default function Settings() {
                             <div className="sectionOptionContent">
                                 <div className="preferenceOption">Change Password</div>
                             </div>
-                            <div className="sectionOptionContent">
+                            <div className="sectionOptionContent" style={{display:"none"}} >
                                 <div className="preferenceOption">Security</div>
                             </div>
-                            <div className="sectionOptionContent">
+                            <div className="sectionOptionContent" style={{ display: "none" }} >
                                 <div className="preferenceOption">Sign out</div>
                             </div>
                         </div>
