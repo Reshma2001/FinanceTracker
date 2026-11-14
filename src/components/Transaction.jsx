@@ -1,8 +1,16 @@
+import { useState } from "react";
 import transactionData from "../../data/transactionData";
 import "./Transaction.css";
 
 export default function Transaction() {
-    const transactions = transactionData.map(item => (
+    const [searchText, setSearchText] = useState("");
+
+    const filteredTransactions = transactionData.filter(item =>
+        item.title.toLowerCase().includes(searchText.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    const transactions = filteredTransactions.map(item => (
         <tr key={ item.id}>
             <td>{item.date}</td>
             <td>{item.title}</td>
@@ -22,7 +30,9 @@ export default function Transaction() {
                 <input
                     className="searchInput"
                     type="text"
-                    placeholder="Search transactions"
+                    placeholder="Search by transactions or category"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
                 />
                 <div className="transactionGrid">
                     <table className="transactionTable">
@@ -36,7 +46,7 @@ export default function Transaction() {
                             </tr>
                         </thead>
                         <tbody>
-                            {transactions}
+                            {transactions.length > 0 ? transactions : <span className="nillItems">No Data Found</span>}
                         </tbody>
                     </table>
                 </div>

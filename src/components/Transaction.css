@@ -13,6 +13,12 @@
     padding-inline-start: 10px;
 }
 
+.nillItems {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1.2em;
+}
+
 .transactionTable {
     display: flex;
     flex-direction: column;
@@ -20,6 +26,11 @@
     width: 100%;
     height: 100%;
 }
+
+    .transactionTable thead {
+        padding-bottom: 5px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
 
     .transactionTable tr {
         width: 100%;

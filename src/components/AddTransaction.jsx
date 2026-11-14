@@ -14,13 +14,14 @@ export default function AddTransaction({ setIsModalOpen,setIncomeAmount,setBalan
 
     function addTransaction(formData) {
         const title = formData.get("title");        
+        const type = formData.get("type");        
         const amountValue = parseInt(formData.get("amount"));
 
         if (title == "" || amountValue == "" || categoryItem == "") {
             return;
         }
         
-        if (title.toLowerCase() == "income") {
+        if (type == "Income") {
             setIncomeAmount(prevIncome => prevIncome + amountValue);
             setBalanceAmount(prevIncome => prevIncome + amountValue);
         }
@@ -30,7 +31,7 @@ export default function AddTransaction({ setIsModalOpen,setIncomeAmount,setBalan
         }
 
         setRecentTransactions((previousTransactions) => [
-            {
+            {                
                 transactionType: transactionType,
                 amount: amountValue,
                 category: categoryItem

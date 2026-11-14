@@ -5,7 +5,7 @@ export default[
         date: "04 Oct 2026",
         title: "Groceries",
         category: "Food",
-        Type: "Expense",
+        type: "Expense",
         amount: 534
     },
     {
@@ -13,7 +13,7 @@ export default[
         date: "04 Oct 2026",
         title: "Bus",
         category: "Transport",
-        Type: "Expense",
+        type: "Expense",
         amount: 50
     },
     {
@@ -21,7 +21,7 @@ export default[
         date: "04 Oct 2026",
         title: "Movie",
         category: "Entertainment",
-        Type: "Expense",
+        type: "Expense",
         amount: 500
     },
     {
@@ -29,15 +29,15 @@ export default[
         date: "04 Oct 2026",
         title: "Train",
         category: "Transport",
-        Type: "Expense",
+        type: "Expense",
         amount: 234
     },
     {
         id: 5,
         date: "04 Oct 2026",
         title: "Salary",
-        category: "Food",
-        Type: "Expense",
+        category: "Income",
+        type: "Income",
         amount: 25000
     },
     {
@@ -45,7 +45,7 @@ export default[
         date: "03 Oct 2026",
         title: "Snacks",
         category: "Food",
-        Type: "Expense",
+        type: "Expense",
         amount: 100
     },
     {
@@ -53,7 +53,7 @@ export default[
         date: "03 Oct 2026",
         title: "Rapido",
         category: "Transport",
-        Type: "Expense",
+        type: "Expense",
         amount: 234
     },
     {
@@ -61,7 +61,7 @@ export default[
         date: "03 Oct 2026",
         title: "House rent",
         category: "Bills",
-        Type: "Expense",
+        type: "Expense",
         amount: 5000
     },
     {
@@ -69,7 +69,7 @@ export default[
         date: "02 Oct 2026",
         title: "Bus",
         category: "Transport",
-        Type: "Expense",
+        type: "Expense",
         amount: 70
     },
     {
@@ -77,7 +77,7 @@ export default[
         date: "02 Oct 2026",
         title: "Groceries",
         category: "Food",
-        Type: "Expense",
+        type: "Expense",
         amount: 150
     },
     {
@@ -85,7 +85,7 @@ export default[
         date: "02 Oct 2026",
         title: "Snacks",
         category: "Food",
-        Type: "Expense",
+        type: "Expense",
         amount: 30
     },
     {
@@ -93,7 +93,7 @@ export default[
         date: "01 Oct 2026",
         title: "Bus",
         category: "Transport",
-        Type: "Expense",
+        type: "Expense",
         amount: 50
     },
     {
@@ -101,7 +101,7 @@ export default[
         date: "30 Sep 2026",
         title: "Train",
         category: "Transport",
-        Type: "Expense",
+        type: "Expense",
         amount: 100
     },
     {
@@ -109,7 +109,7 @@ export default[
         date: "30 Sep 2026",
         title: "Groceries",
         category: "Food",
-        Type: "Expense",
+        type: "Expense",
         amount: 100
     },
     {
@@ -117,7 +117,7 @@ export default[
         date: "29 Sep 2026",
         title: "Rapido",
         category: "Transport",
-        Type: "Expense",
+        type: "Expense",
         amount: 80
     },
     {
@@ -125,7 +125,7 @@ export default[
         date: "29 Sep 2026",
         title: "Lunch",
         category: "Food",
-        Type: "Expense",
+        type: "Expense",
         amount: 75
     },
 ]

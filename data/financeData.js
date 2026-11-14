@@ -32,22 +32,26 @@ export default {
     recentTransaction: [
         {
             id: 1,
-            transactionType: "Food",
+            transactionType: "Expense",
+            category: "Food",
             amount: 2344
         },
         {
             id: 2,
             transactionType: "Income",
+            category: "Income",
             amount: 23344
         },
         {
             id: 3,
-            transactionType: "Food",
+            transactionType: "Expense",
+            category: "Food",
             amount: 1245
         },
         {
             id: 4,
-            transactionType: "Shopping",
+            transactionType: "Expense",
+            category: "Shopping",
             amount: 5344
         },
     ]
