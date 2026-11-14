@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useAuth } from "../context/useAuth"
 import "./Settings.css"
 
 export default function Settings() {
+    const { user } = useAuth();
     const [theme, setTheme] = useState("Light");
     const [currency, setCurrency] = useState("INR");
     const [notification, setNotification] = useState("On");
@@ -17,7 +19,7 @@ export default function Settings() {
                     <div className="sectionBlock">
                         <div className="sectionTitle">Profile</div>
                         <div className="userInfoContent">
-                            <div className="sectionOptionContent userName">Reshma</div>
+                            <div className="sectionOptionContent userName">{user?.userName}</div>
                             <div className="sectionOptionContent" style={{display: "none"}} >reshma@gmail.com</div>
                         </div>
                     </div>
