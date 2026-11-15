@@ -9,7 +9,7 @@ const currentMonth = new Date().toISOString().slice(0, 7);
 
 function getStoredData(key) {
 	try {
-		return JSON.parse(localStorage.getItem(key)) || [];
+		return JSON.parse(sessionStorage.getItem(key)) || [];
 	} catch {
 		return [];
 	}
@@ -119,7 +119,7 @@ export default function Budgets() {
 		const updatedBudgets = [...budgets, newBudget];
 
 		setBudgets(updatedBudgets);
-		localStorage.setItem(budgetStorageKey, JSON.stringify(updatedBudgets));
+		sessionStorage.setItem(budgetStorageKey, JSON.stringify(updatedBudgets));
 
 		setCategory("");
 		setAmount("");
@@ -132,7 +132,7 @@ export default function Budgets() {
 		const updatedBudgets = budgets.filter((budget) => budget.id !== id);
 
 		setBudgets(updatedBudgets);
-		localStorage.setItem(budgetStorageKey, JSON.stringify(updatedBudgets));
+		sessionStorage.setItem(budgetStorageKey, JSON.stringify(updatedBudgets));
 	}
 
 	return (
