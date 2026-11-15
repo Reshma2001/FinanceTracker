@@ -17,6 +17,11 @@ header, section {
     border-radius: 10px;
 }
 
+.inlineError {
+    font-size: 0.9em;
+    color: red;
+}
+
 .sideSection {
     width: calc(100vw - 20%);
     max-height: 92.5vh;
@@ -30,7 +35,7 @@ header, section {
 
     .sideSection::-webkit-scrollbar-track {
         border-radius: 8px;
-        background-color: transparent;        
+        background-color: transparent;
     }
 
     .sideSection::-webkit-scrollbar-thumb {

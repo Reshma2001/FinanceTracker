@@ -15,7 +15,7 @@ export default function Transaction() {
             <td>{item.date}</td>
             <td>{item.title}</td>
             <td>{item.category}</td>
-            <td>{item.date}</td>
+            <td>{item.type}</td>
             <td>{item.amount}</td>
         </tr>
     ))    
