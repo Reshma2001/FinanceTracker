@@ -1,54 +1,101 @@
 .transactionGrid {
+    overflow-x: auto;
     margin-bottom: 40px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
 }
 
 .searchInput {
-    margin: 30px 0;
-    width: calc(100% - 10px);
-    height: 30px;
-    border: unset;
-    outline: unset;
-    background: rgb(0 0 0 / 3%);
-    border-radius: 5px;
-    padding-inline-start: 10px;
+    width: 100%;
+    height: 42px;
+    margin: 22px 0;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    outline: none;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+    .searchInput:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgb(99 102 241 / 15%);
+    }
+
 .nillItems {
-    text-align: center;
+    padding: 32px 20px;
     margin-top: 25px;
-    font-size: 1.2em;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    color: #64748b;
+    text-align: center;
+    font-size: 1rem;
 }
 
 .transactionTable {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     width: 100%;
-    height: 100%;
+    min-width: 680px;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--ink);
 }
-
-    .transactionTable thead {
-        padding-bottom: 5px;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
 
     .transactionTable tr {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
+        gap: 16px;
     }
 
-    .transactionTable tbody {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .transactionTable th {
-        text-align: start;
-        font-size: 1.2em;
+    .transactionTable thead {
+        background: var(--surface-soft);
     }
 
     .transactionTable th, .transactionTable td {
-        width: calc(100% / 5);
+        padding: 16px 18px;
+        text-align: left;
+        border-bottom: 1px solid var(--line);
     }
+
+    .transactionTable tbody tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .transactionTable tbody tr {
+        background: var(--surface);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .transactionTable tbody tr:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgb(15 23 42 / 10%);
+        }
+
+    .transactionTable th {
+        color: var(--muted);
+        text-align: start;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .transactionTable td {
+        color: var(--ink);
+        font-size: 0.95rem;
+    }
+
+    .transactionTable th,
+    .transactionTable td {
+        width: 20%;
+    }
+
+@media (max-width: 700px) {
+    .transactionTable {
+        min-width: 600px;
+    }
+}

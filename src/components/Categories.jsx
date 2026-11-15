@@ -35,7 +35,7 @@ export default function Categories() {
     return (
         <>
             <section className="categoriesSection sideSection">
-                <div className="categoryGreetings">
+                <div className="categoryGreetings greetingsContainer">
                     <div className="headerFirstColumn">
                         <div className="gestureLbl">Categories 🏷️</div>
                         <div className="greetingOverview">Organize your transaction</div>

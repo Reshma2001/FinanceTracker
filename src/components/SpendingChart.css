@@ -1,25 +1,61 @@
-
-
 .chartBar {
     display: flex;
-    gap: 10px;
-}
-
-.amountBar {
-    font-weight: 600;
+    align-items: center;
+    gap: 16px;
 }
 
 .expenseType {
-    min-width: 100px;
+    min-width: 115px;
+    color: var(--muted);
+    font-size: .9rem;
+    font-weight: 700;
 }
 
 .barContent {
     width: 100%;
-    display: flex;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
 }
 
 .amountBar {
-    height: 20px;
-    background-color: antiquewhite;
+    grid-column: 1;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--teal), #6bd8c5);
+    box-shadow: 0 3px 8px rgb(23 169 153 / 20%);
+}
+
+.barContent {
+    position: relative;
+}
+
+    .barContent::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: #eaf1f5;
+        z-index: -1;
+    }
+
+.expenseAmount {
+    color: var(--ink);
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+@media (max-width: 520px) {
+    .chartBar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .barContent {
+        width: 100%;
+    }
 }

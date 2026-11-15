@@ -44,7 +44,7 @@ export default function AddTransaction({ setIsModalOpen, setIncomeAmount, setBal
                 <div className="modalTitle">
                     Add Transaction
                 </div>
-                <div className="closeModal" onClick={ handleModalClose}>X</div>
+                <div className="closeModal" onClick={handleModalClose} >&times;</div>
             </header>
             <section>
                 <form className="transactionForm" action={addTransaction}>

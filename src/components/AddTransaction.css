@@ -1,40 +1,43 @@
 .transactionForm {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 18px;
 }
 
 .inputContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
     .inputContainer input,
     .inputContainer select {
-        outline: unset;
-        border: unset;
-        padding: 10px;
-        background-color: #f8f8f8;
-        border-radius: 2px;
+        border: 1px solid var(--line);
+        padding: 12px 13px;
+        background-color: var(--surface-soft);
+        border-radius: 10px;
+        color: var(--ink);
     }
 
         .inputContainer input:focus {
-            border-bottom: 1px solid rgba(0,0,0,0.2);
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgb(86 100 232 / 12%);
         }
 
 .radioGroup {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
     .radioGroup input {
-        position: relative;
-        top: 2px;
+        accent-color: var(--primary);
     }
 
 .footerOptions {
     display: flex;
-    gap: 20px;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 6px;
 }

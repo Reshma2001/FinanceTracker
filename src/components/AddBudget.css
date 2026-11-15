@@ -1,0 +1,83 @@
+.addBudgetForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+    .addBudgetForm label {
+        margin-top: 0.75rem;
+        color: var(--ink);
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    .addBudgetForm input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--line);
+        border-radius: 0.5rem;
+        background-color: var(--surface-soft);
+        color: var(--ink);
+        font-size: 1rem;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .addBudgetForm input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgb(86 100 232 / 12%);
+        }
+
+        .addBudgetForm input::placeholder {
+            color: #9ca3af;
+        }
+
+.addBudgetModalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+    .addBudgetModalActions button {
+        padding: 0.7rem 1.1rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+        .addBudgetModalActions button:hover {
+            transform: translateY(-1px);
+        }
+
+        .addBudgetModalActions button[type="button"] {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+
+            .addBudgetModalActions button[type="button"]:hover {
+                background-color: #d1d5db;
+            }
+
+        .addBudgetModalActions button[type="submit"] {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+            .addBudgetModalActions button[type="submit"]:hover {
+                background-color: var(--primary-dark);
+            }
+
+@media (max-width: 480px) {
+    .addBudgetModalActions {
+        flex-direction: column-reverse;
+    }
+
+        .addBudgetModalActions button {
+            width: 100%;
+        }
+}

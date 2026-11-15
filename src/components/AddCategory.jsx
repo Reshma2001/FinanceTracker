@@ -32,7 +32,7 @@ export default function AddCategory(props) {
         <>
             <header>
                 <div className="modalTitle">Add Category</div>
-                <div className="closeModal" onClick={handleModalClose} >X</div>
+                <div className="closeModal" onClick={handleModalClose} >&times;</div>
             </header>
             <section>
                 <form className="categoryForm" action={addCategory}>

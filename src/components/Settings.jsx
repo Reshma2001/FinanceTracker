@@ -18,9 +18,8 @@ export default function Settings() {
                 <div className="sectionsContainer">
                     <div className="sectionBlock">
                         <div className="sectionTitle">Profile</div>
-                        <div className="userInfoContent">
-                            <div className="sectionOptionContent userName">{user?.userName}</div>
-                            <div className="sectionOptionContent" style={{display: "none"}} >reshma@gmail.com</div>
+                        <div className="sectionOptionContainer">
+                            <div className="sectionOptionContent userName">{user?.userName}</div>                            
                         </div>
                     </div>
                     <div className="sectionBlock">
