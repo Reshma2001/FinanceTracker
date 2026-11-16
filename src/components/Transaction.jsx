@@ -1,21 +1,22 @@
 import { useState } from "react";
-import transactionData from "../../data/transactionData";
 import "./Transaction.css";
+import { useFinance } from "../context/FinanceContext";
 
 export default function Transaction() {
+    const { transactions } = useFinance();
     const [searchText, setSearchText] = useState("");
 
-    const filteredTransactions = transactionData.filter(item =>
+    const filteredTransactions = transactions.filter(item =>
         item.title.toLowerCase().includes(searchText.toLowerCase()) ||
         item.category.toLowerCase().includes(searchText.toLowerCase())
     );
 
-    const transactions = filteredTransactions.map(item => (
+    const transactionsItem = filteredTransactions.map(item => (
         <tr key={ item.id}>
             <td>{item.date}</td>
             <td>{item.title}</td>
             <td>{item.category}</td>
-            <td>{item.type}</td>
+            <td>{item.transactionType}</td>
             <td>{item.amount}</td>
         </tr>
     ))    
@@ -46,7 +47,7 @@ export default function Transaction() {
                             </tr>
                         </thead>
                         <tbody>
-                            {transactions.length > 0 ? transactions : <span className="nillItems">No Data Found</span>}
+                            {transactionsItem.length > 0 ? transactionsItem : <span className="nillItems">No Data Found</span>}
                         </tbody>
                     </table>
                 </div>

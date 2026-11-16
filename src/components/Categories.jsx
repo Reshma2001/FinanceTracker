@@ -1,25 +1,24 @@
-import categoryData from "../../data/categoryData";
 import { useState } from "react";
 import "./Categories.css";
 import ModalView from "../shared/ModalView";
 import AddCategory from "./AddCategory";
+import { useFinance } from "../context/FinanceContext";
 
 export default function Categories() {
+    const { IncomeChategory, ExpenseChategory } = useFinance();
     const [isModalOpen, setupIsModalOpen] = useState(false);
-    const [categoryItem, setCategoryItem] = useState(categoryData);
-    
-    const incomeCategoryElem = categoryItem.incomeCategory.map(item => (
-        categoryTemplate(item)
-    ));
+       
+    const expenseCategory = ExpenseChategory
+        .map(item => categoryTemplate(item));
 
-    const expenseCategoryElem = categoryItem.expenseCatergory.map(item => (
-        categoryTemplate(item)
-    ));
+    const incomeCategory = IncomeChategory.map(item => (
+         categoryTemplate(item)
+     ));
 
     function categoryTemplate(item) {
         return (
             <div className="catergoryCard" key={item.id}>
-                <div className="catergoryTitle">{item.category}</div>
+                <div className="catergoryTitle">{item.id}</div>
                 <div className="categoryInfo">
                     <div className="totalExpense">{item.totalExpense ? item.totalExpense : 0} expenses</div>
                     <div className="totalAmount">₹{item.amount ? item.amount : 0}</div>
@@ -45,19 +44,17 @@ export default function Categories() {
                 <div className="categoryList">
                     <div>
                         <div className="caategoryHeading">Income Categories</div>
-                        <div className="categoryGrid">{incomeCategoryElem}</div>
+                        <div className="categoryGrid">{incomeCategory}</div>
                     </div>
                     <div>
                         <div className="caategoryHeading">Expense Categories</div>
-                        <div className="categoryGrid">{expenseCategoryElem}</div>
+                        <div className="categoryGrid">{expenseCategory}</div>
                     </div>
                 </div>
             </section>
             {isModalOpen &&
                 <ModalView isOpen={isModalOpen} >
-                    <AddCategory
-                        setupIsModalOpen={setupIsModalOpen}
-                        setCategoryItem={setCategoryItem} />
+                    <AddCategory setupIsModalOpen={setupIsModalOpen} />
                 </ModalView>}
         </>
     )

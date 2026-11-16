@@ -13,7 +13,7 @@ function getStoredTransactions() {
     }
 }
 
-export function FinanceProvider({children}) {
+export function FinanceProvider({children}) {    
     const [transactions, setTransactions] = useState(getStoredTransactions);
 
     useEffect(() => {
@@ -67,11 +67,52 @@ export function FinanceProvider({children}) {
                 categories[category].amount += transaction.amount;
                 return categories;
             }, {});
+
+        const IncomeChategoryData = transactions
+            .filter(item => item.transactionType === "Income")
+            .reduce((categories, transaction) => {
+                const category = transaction.category;
+
+                if (!categories[category]) {
+                    categories[category] = {
+                        id: category,
+                        expenseType: category,
+                        amount: 0,
+                        totalExpense: 0
+                    }
+                }
+
+                categories[category].amount += transaction.amount;
+                categories[category].totalExpense = categories[category].totalExpense + 1;
+                return categories;
+            }, {});
+
+        const ExpenseChategoryData = transactions
+            .filter(item => item.transactionType === "Expense")
+            .reduce((categories, transaction) => {
+                const category = transaction.category;
+
+                if (!categories[category]) {
+                    categories[category] = {
+                        id: category,
+                        expenseType: category,
+                        amount: 0,
+                        totalExpense: 0
+                    }
+                }
+
+                categories[category].amount += transaction.amount;
+                categories[category].totalExpense += 1;
+                return categories;
+            }, {});
+
         return {
             incomeAmount,
             expenseAmount,
             balanceAmount: incomeAmount - expenseAmount,
-            chartData: Object.values(chartData)
+            chartData: Object.values(chartData),
+            IncomeChategory: Object.values(IncomeChategoryData),
+            ExpenseChategory: Object.values(ExpenseChategoryData)
         }
     }, [transactions]);
 
