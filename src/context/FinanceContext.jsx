@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo, useState, useEffect } from "react";
 
 const FinanceContext = createContext(null);
 const STORAGE_KEY = "financeTransactions";
+const CATEGORIES_KEY = "financeCategories";
 
 function getStoredTransactions() {
     try {
@@ -13,12 +14,55 @@ function getStoredTransactions() {
     }
 }
 
-export function FinanceProvider({children}) {    
+function getStoredCategories() {
+    const defaultCategories = [
+        { category: "Salary", transactionType: "Income" },
+        { category: "Freelance", transactionType: "Income" },
+        { category: "Part Time", transactionType: "Income" },
+        { category: "Food", transactionType: "Expense"},
+        { category: "Shopping", transactionType: "Expense"},
+        { category: "Bills", transactionType: "Expense"},
+        { category: "Entertainment", transactionType: "Expense"},
+        { category: "Health", transactionType: "Expense" }
+    ];
+
+    try {
+        const storedCategories = sessionStorage.getItem(CATEGORIES_KEY);
+        return storedCategories ? JSON.parse(storedCategories) : defaultCategories;
+    }
+    catch {
+        return defaultCategories;
+    }
+}
+
+export function FinanceProvider({ children }) {
+    const [categories, setCategories] = useState(getStoredCategories);
     const [transactions, setTransactions] = useState(getStoredTransactions);
 
     useEffect(() => {
         sessionStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
     },[transactions]);
+
+    useEffect(() => {
+        sessionStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories));
+    }, [categories]);
+
+    const addCategory = (category) => {
+        const isCategoryExist = categories.filter(item => item.category === category.name);
+
+        if (isCategoryExist.length > 0)
+            return "Category already exist";
+
+        const newCategory = {
+            category: category.name,
+            transactionType: category.transactionType
+        }
+
+        setCategories((currentCategories) => [
+            newCategory,
+            ...currentCategories
+        ])
+    }
 
     const addTransaction = (transaction) => {
         const newTransaction = {
@@ -117,6 +161,8 @@ export function FinanceProvider({children}) {
     }, [transactions]);
 
     const value = {
+        categories,
+        addCategory,
         transactions,
         addTransaction,
         deleteTransaction,

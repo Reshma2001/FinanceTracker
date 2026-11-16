@@ -1,31 +1,22 @@
 
+import { useFinance } from "../context/FinanceContext";
 import "./AddCategory.css";
 
-export default function AddCategory(props) {
+export default function AddCategory({ setupIsModalOpen }) {
+    const { addCategory } = useFinance();
+
     function handleModalClose() {
-        props.setupIsModalOpen(false);
+        setupIsModalOpen(false);
     }
 
-    function handleCancel() {
+    function handleAddCategory(fromData) {
+        const category = {
+            name: fromData.get("name"),
+            transactionType: fromData.get("type")
+        }
 
-    }
-
-    function addCategory(fromData) {
-        const name = fromData.get("name");
-        const type = fromData.get("type");
-
-        if (type === "Expense")
-            props.setCategoryItem(preCategory => ({
-                ...preCategory,
-                expenseCatergory: [{ category: name, type: type }, ...preCategory.expenseCatergory]
-            }))
-        else
-            props.setCategoryItem(preCategory => ({
-                ...preCategory,
-                incomeCategory: [{ category: name, type: type }, ...preCategory.incomeCategory]
-            }))
-
-        console.log(name, type);
+        addCategory(category);  
+        setupIsModalOpen(false);
     }
 
     return (
@@ -35,7 +26,7 @@ export default function AddCategory(props) {
                 <div className="closeModal" onClick={handleModalClose} >&times;</div>
             </header>
             <section>
-                <form className="categoryForm" action={addCategory}>
+                <form className="categoryForm" action={handleAddCategory}>
                     <div className="inputContainer">
                         <label htmlFor="categoryName">Category Name</label>
                         <input id="categoryName" type="text" name="name" placeholder="Eg. Food"></input>
@@ -47,8 +38,7 @@ export default function AddCategory(props) {
                             <label><input type="radio" name="type" value="Income" defaultChecked={true} /> Income</label>
                         </div>
                     </div>
-                    <div className="footerOptions">
-                        <button type="button" onClick={handleCancel} >Cancel</button>
+                    <div className="footerOptions">                        
                         <button type="submit">Add</button>
                     </div>
                 </form>

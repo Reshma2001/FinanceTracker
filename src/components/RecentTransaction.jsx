@@ -1,5 +1,4 @@
-export default function RecentTransaction({ transaction }) {
-    
+export default function RecentTransaction({ transaction }) {    
     return (
         <>
             <div className="transactionItem">

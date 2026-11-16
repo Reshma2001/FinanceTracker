@@ -3,7 +3,7 @@ import "./AddTransaction.css"
 import { useFinance } from "../context/FinanceContext";
 
 export default function AddTransaction({ setIsModalOpen }) {
-    const { addTransaction } = useFinance();
+    const { addTransaction, categories } = useFinance();
     const today = new Date();
     const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
@@ -14,6 +14,10 @@ export default function AddTransaction({ setIsModalOpen }) {
         date: todayStr,
         amount: ""
     });    
+
+    const categoriesElem = categories.map(item => (
+        <option value={item.category}>{item.category}</option>
+    ))
     
     function handleModalClose() {
         setIsModalOpen(false);
@@ -60,14 +64,7 @@ export default function AddTransaction({ setIsModalOpen }) {
                             value={transactionItem.category}
                             onChange={(e) => setTransactionItem({ ...transactionItem, category: e.target.value })}>
                             <option value="">-- Choose Category --</option>
-                            <option value="Food">Food</option>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Bills">Bills</option>
-                            <option value="Entertainment">Entertainment</option>
-                            <option value="Transport">Transport</option>
-                            <option value="Health">Health</option>
-                            <option value="Income">Salary</option>
-                            <option value="PartTime">Part Time Job</option>
+                            {categoriesElem}
                         </select>
                         {transactionItem.category === "" && <span className="inlineError">Category is required</span>}
                     </div>

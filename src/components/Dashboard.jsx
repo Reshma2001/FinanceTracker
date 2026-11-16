@@ -83,7 +83,7 @@ export default function Dashboard() {
                     <div className="chartLbl">Spending Overview</div>
 
                     <div className="barContainer">
-                        {chartSummary.length > 0 ? chartSummary : <div className="nillItems">No transaction made for overview</div>}
+                        {chartSummary.length > 0 ? chartSummary : <div className="nillItems">No expense made for overview</div>}
                     </div>
                 </div>
 
