@@ -1,4 +1,5 @@
 export default function RecentTransaction({ transaction }) {
+    console.log("RecentTransaction", transaction);
     return (
         <>
             <div className="transactionItem">

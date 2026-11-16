@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./AddTransaction.css"
+import { useFinance } from "../context/FinanceContext";
 
-export default function AddTransaction({ setIsModalOpen, setIncomeAmount, setBalanceAmount, setExpenseAmount, setRecentTransactions }) {
+export default function AddTransaction({ setIsModalOpen }) {
+    const { addTransaction } = useFinance();
     const today = new Date();
     const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
@@ -17,25 +19,13 @@ export default function AddTransaction({ setIsModalOpen, setIncomeAmount, setBal
         setIsModalOpen(false);
     }
 
-    function addTransaction() {        
+    function handleAddTransaction() {        
         const amountValue = transactionItem.amount;
 
         if (transactionItem.title == "" || amountValue == "" || transactionItem.category == "")
             return;        
-        
-        if (transactionItem.transactionType == "Income") {
-            setIncomeAmount(prevIncome => prevIncome + amountValue);
-            setBalanceAmount(prevIncome => prevIncome + amountValue);
-        }
-        else {
-            setExpenseAmount(preExpense => preExpense + amountValue);
-            setBalanceAmount(preExpense => preExpense - amountValue);
-        }
 
-         setRecentTransactions((previousTransactions) => [
-             transactionItem,
-             ...previousTransactions
-         ]);        
+        addTransaction(transactionItem);      
     }
 
     return (
@@ -47,7 +37,7 @@ export default function AddTransaction({ setIsModalOpen, setIncomeAmount, setBal
                 <div className="closeModal" onClick={handleModalClose} >&times;</div>
             </header>
             <section>
-                <form className="transactionForm" action={addTransaction}>
+                <form className="transactionForm" action={handleAddTransaction}>
                     <div className="inputContainer">
                         <label htmlFor="transactionTitle">
                             Title

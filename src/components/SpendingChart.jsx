@@ -1,7 +1,10 @@
 
+import { useFinance } from "../context/FinanceContext";
 import "./SpendingChart.css"
-export default function SpendingChart({ totalExpense, chartReport }) {
-    const expensePer = ((chartReport.amount / totalExpense) * 100).toFixed(1);
+export default function SpendingChart({ chartReport }) {
+    const { expenseAmount } = useFinance();
+    const expensePer = ((chartReport.amount / expenseAmount) * 100).toFixed(1);
+
     return (
         <>
             <div className="chartBar">

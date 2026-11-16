@@ -1,20 +1,21 @@
 import { useState } from "react";
 import "./Dashboard.css"
-import financeData from "../../data/financeData";
 import SummaryCard from "./SummaryCard";
 import SpendingChart from "./SpendingChart";
 import RecentTransaction from "./RecentTransaction";
 import AddTransaction from "./AddTransaction";
 import ModalView from "../shared/ModalView";    
 import { useAuth } from "../context/useAuth";
+import { useFinance } from "../context/FinanceContext";
 
 export default function Dashboard() {
-    const {user} = useAuth();
+    const { user } = useAuth();
+    const { transactions, balanceAmount, incomeAmount, expenseAmount, chartData } = useFinance();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [recentTransactions, setRecentTransactions] = useState(financeData.recentTransaction);
-    const [balanceAmount, setBalanceAmount] = useState(financeData.balanceAmount);
-    const [expenseAmount, setExpenseAmount] = useState(financeData.expenseAmount);
-    const [incomeAmount, setIncomeAmount] = useState(financeData.incomeAmount);
+    // const [recentTransactions, setRecentTransactions] = useState(financeData.recentTransaction);
+    // const [balanceAmount, setBalanceAmount] = useState(financeData.balanceAmount);
+    // const [expenseAmount, setExpenseAmount] = useState(financeData.expenseAmount);
+    // const [incomeAmount, setIncomeAmount] = useState(financeData.incomeAmount);
 
     const dateNow = new Date();
     const currentHour = dateNow.getHours();
@@ -28,24 +29,25 @@ export default function Dashboard() {
         greetingLabel = "Evening";
     }
 
-    const chartSummary = financeData.chartReport.map((item) => (
+    const chartSummary = chartData.map((item) => (
         <SpendingChart
             key={item.id}
-            totalExpense={financeData.expenseAmount}
             chartReport={item}
         />
     ));
 
-    const recentTransactionItems = recentTransactions.map((item) => (
+    const recentTransactionItems = transactions
+        .slice(0, 5)
+        .map((item) => (
         <RecentTransaction
             key={item.id}
             transaction={item}
         />
     ));
 
-    function handleAddButton() {
-        setIsModalOpen(true);
-    }
+     function handleAddButton() {
+         setIsModalOpen(true);
+     }
 
     return (
         <>
@@ -81,7 +83,7 @@ export default function Dashboard() {
                     <div className="chartLbl">Spending Overview</div>
 
                     <div className="barContainer">
-                        {chartSummary}
+                        {chartSummary.length > 0 ? chartSummary : <div className="nillItems">No transaction made for overview</div>}
                     </div>
                 </div>
 
@@ -100,7 +102,7 @@ export default function Dashboard() {
                     </div>
 
                     <div className="transactionList">
-                        {recentTransactionItems}
+                        {recentTransactionItems.length >0 ? recentTransactionItems : <div className="nillItems">No transaction</div>}
                     </div>
                 </div>
             </section>
@@ -109,10 +111,6 @@ export default function Dashboard() {
                 <ModalView isOpen={isModalOpen}>
                     <AddTransaction
                         setIsModalOpen={setIsModalOpen}
-                        setIncomeAmount={setIncomeAmount}
-                        setBalanceAmount={setBalanceAmount}
-                        setExpenseAmount={setExpenseAmount}
-                        setRecentTransactions={setRecentTransactions}
                     />
                 </ModalView>
             )}
