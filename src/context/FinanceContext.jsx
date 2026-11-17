@@ -6,7 +6,7 @@ const CATEGORIES_KEY = "financeCategories";
 
 function getStoredTransactions() {
     try {
-        const storedTransactions = sessionStorage.getItem(STORAGE_KEY);
+        const storedTransactions = localStorage.getItem(STORAGE_KEY);
         return storedTransactions ? JSON.parse(storedTransactions) : [];
     }
     catch {
@@ -27,7 +27,7 @@ function getStoredCategories() {
     ];
 
     try {
-        const storedCategories = sessionStorage.getItem(CATEGORIES_KEY);
+        const storedCategories = localStorage.getItem(CATEGORIES_KEY);
         return storedCategories ? JSON.parse(storedCategories) : defaultCategories;
     }
     catch {
@@ -40,11 +40,11 @@ export function FinanceProvider({ children }) {
     const [transactions, setTransactions] = useState(getStoredTransactions);
 
     useEffect(() => {
-        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
     },[transactions]);
 
     useEffect(() => {
-        sessionStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories));
+        localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories));
     }, [categories]);
 
     const addCategory = (category) => {

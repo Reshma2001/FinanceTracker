@@ -38,6 +38,12 @@
     font-size: 1rem;
 }
 
+tr.nillItem {
+    display: block;
+    padding-top: 10px;
+    text-align: center;
+}
+
 .transactionTable {
     width: 100%;
     min-width: 680px;
@@ -69,6 +75,11 @@
         background: var(--surface);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
+        .transactionTable tbody tr.nillItem:hover {
+            transform: unset !important;
+            box-shadow: unset !important;
+        }
 
         .transactionTable tbody tr:hover {
             transform: translateY(-2px);

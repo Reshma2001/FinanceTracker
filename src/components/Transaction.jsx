@@ -47,7 +47,7 @@ export default function Transaction() {
                             </tr>
                         </thead>
                         <tbody>
-                            {transactionsItem.length > 0 ? transactionsItem : <span className="nillItems">No Data Found</span>}
+                            {transactionsItem.length > 0 ? transactionsItem : <tr className="nillItem">No Data Found</tr>}
                         </tbody>
                     </table>
                 </div>
