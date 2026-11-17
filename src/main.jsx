@@ -5,6 +5,9 @@ import App from './App.jsx'
 import AuthProvider from './context/useAuth.jsx';
 import { FinanceProvider } from './context/FinanceContext.jsx';
 
+const savedTheme = localStorage.getItem("theme") || "light";
+document.documentElement.dataset.theme = savedTheme;
+
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <AuthProvider>
