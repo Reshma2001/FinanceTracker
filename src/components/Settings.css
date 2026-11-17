@@ -17,6 +17,12 @@
     box-shadow: var(--shadow);
 }
 
+.logout{
+    cursor: pointer !important;
+    color: red !important;
+    font-weight: 600;   
+}
+
 .sectionTitle {
     margin: 0;
     color: var(--ink);

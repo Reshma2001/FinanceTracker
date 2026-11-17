@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/useAuth";
 import "./Menu.css"
+import { useAuth } from "../context/useAuth";
 
 export default function Menu({ setSectionName }) {
-    const { user, logout } = useAuth();
-    const navigate = useNavigate();
+    const { user } = useAuth();
     const [activeMenu, setActiveMenu] = useState("Dashboard");
     const menuItems = ["Dashboard", "Transaction", "Budgets", "Categories", "Settings"];
 
@@ -13,12 +11,7 @@ export default function Menu({ setSectionName }) {
         const currentMenu = event.currentTarget.getAttribute("menuName");
         setActiveMenu(currentMenu);
         setSectionName(currentMenu);
-    }
-
-    function handleLogout() {
-        logout();
-        navigate("/", { replace: true });
-    }
+    }    
 
     return (
         <section className="menuSection">
@@ -29,7 +22,7 @@ export default function Menu({ setSectionName }) {
                 </div>
             </div>
             <div className="footerSection">
-                <div className="currentUser">👤 <span className="userName">{user?.userName}</span> <span className="signOutIcon" onClick={handleLogout} >⍈</span></div>
+                <div className="currentUser">👤 <span className="userName">{user?.userName}</span></div>
             </div>
         </section>
     )
