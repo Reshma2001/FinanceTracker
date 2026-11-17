@@ -3,11 +3,21 @@ import { createContext, useContext, useMemo, useState, useEffect } from "react";
 const FinanceContext = createContext(null);
 const STORAGE_KEY = "financeTransactions";
 const CATEGORIES_KEY = "financeCategories";
+const BUDGET_KEY = "financeBudget";
 
 function getStoredTransactions() {
     try {
         const storedTransactions = localStorage.getItem(STORAGE_KEY);
         return storedTransactions ? JSON.parse(storedTransactions) : [];
+    }
+    catch {
+        return [];
+    }
+}
+function getStoredBudget() {
+    try {
+        const storedBudget = localStorage.getItem(BUDGET_KEY);
+        return storedBudget ? JSON.parse(storedBudget) : [];
     }
     catch {
         return [];
@@ -36,7 +46,9 @@ function getStoredCategories() {
 }
 
 export function FinanceProvider({ children }) {
+    const [currentMonth, setCurrentMonth] = useState(new Date().toISOString().slice(0, 7));
     const [categories, setCategories] = useState(getStoredCategories);
+    const [budget, setBudget] = useState(getStoredBudget);
     const [transactions, setTransactions] = useState(getStoredTransactions);
 
     useEffect(() => {
@@ -46,6 +58,56 @@ export function FinanceProvider({ children }) {
     useEffect(() => {
         localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories));
     }, [categories]);
+
+    useEffect(() => {
+        localStorage.setItem(BUDGET_KEY, JSON.stringify(budget));
+    }, [budget]);
+
+    const addBuget = (budget) => { 
+        const newBudget = {
+            id: crypto.randomUUID(),
+            category: budget.category,
+            amount: budget.amount,
+            month: budget.month
+        };
+
+        setBudget((currentBudget) => [
+            newBudget,
+            ...currentBudget
+        ]);
+    }
+
+    const deleteBudget = (budgetId) => {
+        setBudget((currentBudget) => currentBudget.filter(item => item.id !== budgetId));
+    }
+
+    const budgetList = useMemo(() => {
+        return budget.filter((item) => item.month === currentMonth);
+    }, [budget, currentMonth]);
+
+    const budgetSummary = useMemo(() => {
+        const totalBudget = budget
+            .filter((item) => item.month === currentMonth)
+            .reduce((total, item) => total + Number(item.amount || 0), 0);
+
+        const totalIncome = transactions
+            .filter((item) => item.date?.slice(0, 7) === currentMonth && item.transactionType === "Income")
+            .reduce((total, item) => total + Number(item.amount || 0), 0);
+
+        const totalSpend = transactions
+            .filter((item) => item.date?.slice(0, 7) === currentMonth && item.transactionType === "Expense")
+            .reduce((total, item) => total + Number(item.amount || 0), 0);
+
+        const remainingAmount = Math.max(totalIncome - totalSpend, 0);
+        const totalUsagePercentage = totalIncome ? Math.min((totalSpend / totalIncome) * 100, 100) : 0;
+
+        return {
+            totalBudget,
+            totalSpend,
+            remainingAmount,
+            totalUsagePercentage
+        };
+    }, [budget,transactions, currentMonth]);
 
     const addCategory = (category) => {
         const isCategoryExist = categories.filter(item => item.category === category.name);
@@ -161,6 +223,12 @@ export function FinanceProvider({ children }) {
     }, [transactions]);
 
     const value = {
+        currentMonth,   
+        setCurrentMonth,
+        budgetList,
+        addBuget,
+        deleteBudget,
+        ...budgetSummary,
         categories,
         addCategory,
         transactions,

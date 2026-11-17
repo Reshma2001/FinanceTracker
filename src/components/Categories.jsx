@@ -44,11 +44,13 @@ export default function Categories() {
                 <div className="categoryList">
                     <div>
                         <div className="caategoryHeading">Income Categories</div>
-                        <div className="categoryGrid">{incomeCategory}</div>
+                        <div className="categoryGrid">
+                            {incomeCategory.length > 0 ? incomeCategory : <div className="nillItems">No transactions in income category.</div> }
+                        </div>
                     </div>
                     <div>
                         <div className="caategoryHeading">Expense Categories</div>
-                        <div className="categoryGrid">{expenseCategory}</div>
+                        <div className="categoryGrid">{expenseCategory.length > 0 ? expenseCategory : <div className="nillItems"> No transactions in expense category.</div> }</div>
                     </div>
                 </div>
             </section>

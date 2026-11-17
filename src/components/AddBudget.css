@@ -1,7 +1,7 @@
 .addBudgetForm {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 10px;
 }
 
     .addBudgetForm label {
@@ -32,6 +32,10 @@
         .addBudgetForm input::placeholder {
             color: #9ca3af;
         }
+
+.budgetModalActions {
+    margin-top: 15px;
+}
 
 .addBudgetModalActions {
     display: flex;

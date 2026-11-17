@@ -29,7 +29,8 @@ export default function AddTransaction({ setIsModalOpen }) {
         if (transactionItem.title == "" || amountValue == "" || transactionItem.category == "")
             return;        
 
-        addTransaction(transactionItem);      
+        addTransaction(transactionItem);    
+        setIsModalOpen(false);
     }
 
     return (

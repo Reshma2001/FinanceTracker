@@ -51,7 +51,7 @@ export default function AddBudget({
 					required
 				/>
 
-				<div className="modalActions">
+				<div className="budgetModalActions">
 					<button type="submit">Save budget</button>
 				</div>
 				</form>

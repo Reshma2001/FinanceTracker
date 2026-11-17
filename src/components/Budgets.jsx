@@ -1,36 +1,7 @@
-import { useMemo, useState } from "react";
 import "./Budgets.css";
 import AddBudget from "./AddBudget";
-
-const budgetStorageKey = "budgets";
-const transactionStorageKey = "transactions";
-
-const currentMonth = new Date().toISOString().slice(0, 7);
-
-function getStoredData(key) {
-	try {
-		return JSON.parse(sessionStorage.getItem(key)) || [];
-	} catch {
-		return [];
-	}
-}
-
-function getTransactionAmount(transaction) {
-	return Number(
-		transaction.amount ??
-		transaction.value ??
-		transaction.spent ??
-		0
-	);
-}
-
-function isExpense(transaction) {
-	return (
-		transaction.type?.toLowerCase() === "expense" ||
-		transaction.kind?.toLowerCase() === "expense" ||
-		!transaction.type
-	);
-}
+import { useFinance } from "../context/FinanceContext";
+import { useState } from "react";
 
 function formatCurrency(value) {
 	return new Intl.NumberFormat("en-IN", {
@@ -49,56 +20,11 @@ function formatMonth(month) {
 }
 
 export default function Budgets() { 
-	const [budgets, setBudgets] = useState(() => getStoredData(budgetStorageKey));
-	const [transactions] = useState(() => getStoredData(transactionStorageKey));
-	const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+	const { currentMonth, setCurrentMonth, budgetList, totalBudget, totalSpend, remainingAmount, totalUsagePercentage, addBuget, deleteBudget } = useFinance();	
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [category, setCategory] = useState("");
 	const [amount, setAmount] = useState("");
 	const [month, setMonth] = useState(currentMonth);
-
-	const monthlyTransactions = useMemo(() => {
-		return transactions.filter((transaction) => {
-			const transactionDate = transaction.date || transaction.createdAt;
-
-			return (
-				transactionDate?.slice(0, 7) === selectedMonth &&
-				isExpense(transaction)
-			);
-		});
-	}, [transactions, selectedMonth]);
-
-	const monthlyBudgets = useMemo(() => {
-		return budgets.filter((budget) => budget.month === selectedMonth);
-	}, [budgets, selectedMonth]);
-
-	const totalBudget = monthlyBudgets.reduce(
-		(total, budget) => total + Number(budget.amount || 0),
-		0
-	);
-
-	const totalSpend = monthlyTransactions.reduce(
-		(total, transaction) => total + getTransactionAmount(transaction),
-		0
-	);
-
-	const remainingAmount = Math.max(totalBudget - totalSpend, 0);
-	const totalUsagePercentage = totalBudget
-		? Math.min((totalSpend / totalBudget) * 100, 100)
-		: 0;
-
-	function getCategorySpend(categoryName) {
-		return monthlyTransactions
-			.filter(
-				(transaction) =>
-					transaction.category?.toLowerCase() ===
-					categoryName.toLowerCase()
-			)
-			.reduce(
-				(total, transaction) => total + getTransactionAmount(transaction),
-				0
-			);
-	}
 
 	function handleBudgetCreate(event) {
 		event.preventDefault();
@@ -109,30 +35,23 @@ export default function Budgets() {
 			return;
 		}
 
-		const newBudget = {
-			id: crypto.randomUUID(),
+		const newBudget = {			
 			category: category.trim(),
 			amount: budgetAmount,
 			month
 		};
-
-		const updatedBudgets = [...budgets, newBudget];
-
-		setBudgets(updatedBudgets);
-		sessionStorage.setItem(budgetStorageKey, JSON.stringify(updatedBudgets));
+		
+		addBuget(newBudget)
 
 		setCategory("");
 		setAmount("");
 		setMonth(currentMonth);
 		setIsModalOpen(false);
-		setSelectedMonth(month);
+		setCurrentMonth(month);
 	}
 
 	function handleBudgetDelete(id) {
-		const updatedBudgets = budgets.filter((budget) => budget.id !== id);
-
-		setBudgets(updatedBudgets);
-		sessionStorage.setItem(budgetStorageKey, JSON.stringify(updatedBudgets));
+		deleteBudget(id);
 	}
 
 	return (
@@ -159,8 +78,8 @@ export default function Budgets() {
 					<input
 						id="budgetMonth"
 						type="month"
-						value={selectedMonth}
-						onChange={(event) => setSelectedMonth(event.target.value)}
+						value={currentMonth}
+						onChange={(event) => setCurrentMonth(event.target.value)}
 					/>
 				</div>
 
@@ -188,7 +107,7 @@ export default function Budgets() {
 
 				<div className="budgetProgress">
 					<div className="budgetProgressHeader">
-						<span>{formatMonth(selectedMonth)} usage</span>
+						<span>{formatMonth(currentMonth)} usage</span>
 						<span>{totalUsagePercentage.toFixed(0)}%</span>
 					</div>
 
@@ -201,13 +120,13 @@ export default function Budgets() {
 				</div>
 
 				<div className="budegetContainer">
-					{monthlyBudgets.length === 0 ? (
+					{budgetList.length === 0 ? (
 						<div className="emptyBudget">
-							No budgets are added for {formatMonth(selectedMonth)}.
+							No budgets are added for {formatMonth(currentMonth)}.
 						</div>
 					) : (
-						monthlyBudgets.map((budget) => {
-							const spent = getCategorySpend(budget.category);
+						budgetList.map((budget) => {
+							const spent = totalSpend;
 							const remaining = Math.max(
 								Number(budget.amount) - spent,
 								0

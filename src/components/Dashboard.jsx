@@ -12,10 +12,6 @@ export default function Dashboard() {
     const { user } = useAuth();
     const { transactions, balanceAmount, incomeAmount, expenseAmount, chartData } = useFinance();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [recentTransactions, setRecentTransactions] = useState(financeData.recentTransaction);
-    // const [balanceAmount, setBalanceAmount] = useState(financeData.balanceAmount);
-    // const [expenseAmount, setExpenseAmount] = useState(financeData.expenseAmount);
-    // const [incomeAmount, setIncomeAmount] = useState(financeData.incomeAmount);
 
     const dateNow = new Date();
     const currentHour = dateNow.getHours();
