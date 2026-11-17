@@ -13,8 +13,8 @@
     min-height: 100dvh;
     padding: 22px 14px;
     overflow-y: auto;
-    color: #ffffff;
-    background: linear-gradient(180deg, #202a52 0%, #111832 100%);
+    color: var(--menu-text-color);
+    background: var(--menu-bg);
     border-right: 1px solid rgb(255 255 255 / 8%);
     box-shadow: 8px 0 28px rgb(21 31 69 / 14%);
 }
@@ -30,7 +30,7 @@
 
 .currentUser {
     padding: 16px 12px;
-    color: #aeb9d5;
+    color: var(--menu-text-color);
     font-size: 0.9rem;
 }
 
@@ -41,14 +41,14 @@
     margin: 4px 0;
     cursor: pointer;
     border-radius: 10px;
-    color: #b7c1dc;
+    color: var(--menu-text-color);
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
     .menuitems.activeMenu,
     .menuitems:hover {
         color: #ffffff;
-        background: linear-gradient(90deg, #626ff0, #5362dc);
+        background: var(--menu-active);
         transform: translateX(3px);
     }
 

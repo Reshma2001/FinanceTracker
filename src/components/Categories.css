@@ -38,7 +38,7 @@
 }
 
 .caategoryHeading {
-    color: var(--ink);
+    color: var(--outer-text);
     font-size: 1.25em;
     font-weight: 700;
     letter-spacing: 0.01em;

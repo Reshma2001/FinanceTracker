@@ -6,12 +6,17 @@ import "./Settings.css"
 export default function Settings() {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
-    const [theme, setTheme] = useState("Light");
+    const [theme, setTheme] = useState("light");
 
     function handleLogout() {
         logout();
         navigate("/", { replace: true });
     }
+
+    function toggleTheme(event){
+        setTheme(event.target.value);
+        document.documentElement.dataset.theme = event.target.value;
+    };
 
     return (
         <>
@@ -32,9 +37,9 @@ export default function Settings() {
                         <div className="sectionOptionContainer">
                             <div className="sectionOptionContent">
                                 <div className="preferenceOption">Appearance</div>
-                                <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-                                    <option value="Light" name="appearance">Light</option>
-                                    <option value="Dark" name="appearance">Dark</option>
+                                <select value={theme} onChange={toggleTheme}>
+                                    <option value="light" name="appearance">Light</option>
+                                    <option value="dark" name="appearance">Dark</option>
                                 </select>
                             </div>
                         </div>

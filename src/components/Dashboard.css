@@ -13,7 +13,7 @@
     gap: 8px;
     padding: 30px;
     border-radius: 20px;
-    background: linear-gradient( 330deg, #3F2B96 0%, #A8C0FF 100%);
+    background: var(--section-top);
     color: #ffffff;
     box-shadow: 0 16px 30px rgb(86 100 232 / 22%);
 }
@@ -37,7 +37,7 @@
 
 .chartLbl {
     margin-bottom: 18px;
-    color: var(--ink);
+    color: var(--outer-text);
     font-size: 1.15em;
     font-weight: 700;
 }
@@ -74,7 +74,7 @@
 }
 
 .transactionLbl {
-    color: var(--ink);
+    color: var(--outer-text);
     font-size: 1.1em;
     font-weight: 700;
 }
@@ -98,7 +98,7 @@
 
 .transacationType {
     min-width: 100px;
-    color: #64748b;
+    color: var(--ink);
     font-weight: 500;
 }
 
