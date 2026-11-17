@@ -6,7 +6,8 @@ import "./Settings.css"
 export default function Settings() {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
-    const [theme, setTheme] = useState("light");
+    const savedTheme = localStorage.getItem("theme") || "light";
+    const [theme, setTheme] = useState(savedTheme);
 
     function handleLogout() {
         logout();
@@ -15,6 +16,7 @@ export default function Settings() {
 
     function toggleTheme(event){
         setTheme(event.target.value);
+        localStorage.setItem("theme", event.target.value);
         document.documentElement.dataset.theme = event.target.value;
     };
 
