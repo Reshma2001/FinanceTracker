@@ -90,3 +90,13 @@ The data is used to populate the dashboard and transaction views. Transactions a
 ## License
 
 This project is intended for learning and demonstration purposes.
+
+## Demo Login Credentials
+
+The application currently uses local demo authentication. Use either account below:
+
+| Username | Password |
+|----------|----------|
+| `admin`  | `123456` |
+
+These credentials are for demonstration only. Authentication is not connected to a backend service.

@@ -1,51 +1,111 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./Login.css"
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 import userData from "../../data/userData";
 import { useAuth } from "../context/useAuth.jsx";
 
 export default function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");    
 
-    const handleLogin = (e) => {
-        e.preventDefault();
+    function handleLogin(event) {
+        event.preventDefault();
 
-        const user = userData.find((item) =>
-                item.userName === username &&
+        const user = userData.find(
+            (item) =>
+                item.userName === username.trim() &&
                 item.password === password
         );
 
-        if (user) {
-            login({
-                userName: user.userName,
-            })
+        if (!user) {
+            setErrorMessage(
+                "Invalid credentials. Use one of the demo accounts below."
+            );
+            return;
         }
 
-        const isValidUser = !!user;
+        login({
+            userName: user.userName,
+        });
 
-        if (isValidUser)
-            navigate("/dashboard", { replace: true });
-    };
+        navigate("/dashboard", { replace: true });
+    }
 
     return (
         <main className="loginContainer">
-            <div className="loginContent">
+            <form className="loginContent" onSubmit={handleLogin}>
                 <div className="loginLbl">LOGIN</div>
+
+                <div className="loginSubtitle">
+                    Use a demo account to access Finance Tracker.
+                </div>
+
+                <div className="demoCredentials" aria-label="Demo credentials">
+                    <div className="demoCredentialsTitle">
+                        Demo credentials
+                    </div>
+
+                    {userData.map((user) => (
+                        <div
+                            className="demoCredentialRow"
+                            key={user.userName}
+                        >
+                            <span>
+                                <strong>Username:</strong> {user.userName}
+                            </span>
+                            <span>
+                                <strong>Password:</strong> {user.password}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+
                 <div className="inputContainer">
                     <div className="nameContainer">
-                        <div htmlFor="username">UserName</div>
-                        <input type="text" onChange={(e) => setUsername(e.target.value)} id="username" placeholder="Enter the username" />
+                        <label htmlFor="username">Username</label>
+                        <input
+                            id="username"
+                            type="text"
+                            placeholder="Enter the username"
+                            value={username}
+                            onChange={(event) => {
+                                setUsername(event.target.value);
+                                setErrorMessage("");
+                            }}
+                            autoComplete="username"
+                            required
+                        />
                     </div>
+
                     <div className="pwdContainer">
-                        <div htmlFor="password">Password</div>
-                        <input type="password" onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter the password" />
+                        <label htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Enter the password"
+                            value={password}
+                            onChange={(event) => {
+                                setPassword(event.target.value);
+                                setErrorMessage("");
+                            }}
+                            autoComplete="current-password"
+                            required
+                        />
                     </div>
                 </div>
-                <button className="" onClick={handleLogin}>Login</button>
-            </div>
+
+                {errorMessage && (
+                    <div className="loginError" role="alert">
+                        {errorMessage}
+                    </div>
+                )}
+
+                <button type="submit">Login</button>
+            </form>
         </main>
-    )
+    );
 }

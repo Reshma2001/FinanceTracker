@@ -24,7 +24,7 @@
 
 .loginLbl {
     margin: 0;
-    color: var(--ink);
+    color: #172554;
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
@@ -45,7 +45,7 @@
 
     .nameContainer label,
     .pwdContainer label {
-        color: var(--ink);
+        color: #172554;
         font-size: 0.9rem;
         font-weight: 600;
     }
@@ -60,6 +60,7 @@
         outline: none;
         transition: border-color 0.2s ease, box-shadow 0.2s ease;
         box-sizing: border-box;
+        background: #f0f9ff !important;
     }
 
         .nameContainer input:focus,
@@ -89,6 +90,53 @@
         transform: translateY(0);
     }
 
+.loginSubtitle {
+    margin-top: -12px;
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.demoCredentials {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 0.85rem;
+}
+
+.demoCredentialsTitle {
+    color: #172554;
+    font-weight: 700;
+}
+
+.demoCredentialRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px 16px;
+    line-height: 1.5;
+}
+
+.demoCredentialRow strong {
+    color: #475569;
+}
+
+.loginError {
+    padding: 10px 12px;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: #fef2f2;
+    color: #b91c1c;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
 @media (max-width: 480px) {
     .loginContainer {
         padding: 16px;
@@ -100,5 +148,10 @@
 
     .loginLbl {
         font-size: 1.7rem;
+    }
+
+    .demoCredentialRow {
+        flex-direction: column;
+        gap: 2px;
     }
 }
