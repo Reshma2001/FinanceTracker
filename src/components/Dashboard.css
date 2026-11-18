@@ -115,11 +115,6 @@
     }
 
 @media (max-width: 600px) {
-    .dashboardSection {
-        padding: 18px;
-        gap: 22px;
-    }
-
     .greetingsContainer,
     .barContainer {
         padding: 20px;

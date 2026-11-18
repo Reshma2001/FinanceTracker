@@ -99,7 +99,7 @@ tr.nillItem {
         }
 
     .transactionTable th {
-        color: var(--muted);
+        color: var(--ink);
         text-align: start;
         font-size: 0.8rem;
         font-weight: 600;

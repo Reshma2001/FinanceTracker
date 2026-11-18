@@ -11,14 +11,14 @@
     --surface: #ffffff;
     --surface-soft: #f0f9ff;
     --ink: #172554;
-    --muted: #64748b;
+    --muted: #f7f7f7;
     --shadow: 0 12px 30px rgba(30, 64, 175, 0.12);
     --danger: #dc5a6d;
     --menu-bg: linear-gradient( 330deg, #3F2B96 0%, #A8C0FF 100%);
     --menu-active: linear-gradient(90deg, #4e5df1, #394bdc);
     --menu-text-color: #fff;
-    --section-top: linear-gradient( 330deg, #3F2B96 0%, #A8C0FF 100%);
-    --outer-text: #333;    
+    --section-top: linear-gradient( 330deg, #3f2b96bf 0%, #A8C0FF 100%);
+    --outer-text: #333;
 }
 
 [data-theme="dark"] {
